@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    ul {
+        text-decoration: none;
+        list-style: none;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-7">
+        <img src="~/images/elephant-wisdom.jpg" alt="elephant-wisdom.jpg" style="width:80%;" />
+    </div>
+    <div class="col-md-5">
+        <br />
+        <br />
+        <h3 class="display-5">Welcome to FREE-IS4</h3>
+        <br />
+        <hr />
+        <img src="~/favicon.ico" alt="elephant-wisdom.jpg"
+             style="width:30%;" />
+        <br />
+        <hr />
+        <br />
+        <p>Build great applications and protect your privacy and data using one of our plans.</p>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+        <p>Discovery endpoint: <br /> <a id="info" href=@ViewBag.Disco target="_blank">@ViewBag.Disco</a></p>
+
+    </div>
+</div>

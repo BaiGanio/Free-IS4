@@ -1,0 +1,82 @@
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
+using IdentityServer4.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.Threading.Tasks;
+
+namespace IS4.Controllers
+{
+    //[SecurityHeaders]
+    [AllowAnonymous]
+    public class HomeController : Controller
+    {
+        private readonly IIdentityServerInteractionService _interaction;
+        private readonly IWebHostEnvironment _environment;
+        private readonly ILogger _logger;
+        private readonly IConfiguration _config;
+        private readonly string _assemblyVersion;
+
+        public HomeController(
+            IIdentityServerInteractionService interaction, 
+            IWebHostEnvironment environment, 
+            ILogger<HomeController> logger,
+            IConfiguration config)
+        {
+            _interaction = interaction;
+            _environment = environment;
+            _logger = logger;
+            _config = config;
+            _assemblyVersion = $"v{PlatformServices.Default.Application.ApplicationVersion}";
+        }
+
+        public IActionResult Index()
+        {
+            ViewBag.Version = _assemblyVersion;
+            ViewBag.Disco = _config["IS4:DISCO"];
+            return View();
+        }
+
+        /// <summary>
+        /// Shows the error page
+        /// </summary>
+        public async Task<IActionResult> Error(string errorId)
+        {
+            var vm = new ErrorViewModel();
+
+            // retrieve error details from identityserver
+            var message = await _interaction.GetErrorContextAsync(errorId);
+            if (message != null)
+            {
+                vm.Error = message;
+
+                if (!_environment.IsDevelopment())
+                {
+                    // only show in development
+                    message.ErrorDescription = null;
+                }
+            }
+
+            return View("Error", vm);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //   // return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+           
+        //}
+    }
+}
