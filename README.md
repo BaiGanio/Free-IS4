@@ -1,5 +1,5 @@
 
-# Free-IS4 is an Identity Server 4 middleware implementation
+# Free-IS4 is an Identity Server 4 middleware implementation on top of .NET 6 framework
 - Official documentation for implementing Identity Server 4 middleware from scratch:  
   - [docs.identityserver.io](http://docs.identityserver.io/en/release/quickstarts/0_overview.html)
 - Our documentation for additional setup could be found in our project [`WIKI`](https://github.com/BaiGanio/IS4/wiki)
