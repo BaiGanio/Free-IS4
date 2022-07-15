@@ -1,5 +1,8 @@
 
 # Free-IS4 is an Identity Server 4 middleware implementation on top of .NET 6 framework
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1031caa43e3d4b75836820df846af8fd)](https://app.codacy.com/gh/BaiGanio/Free-IS4?utm_source=github.com&utm_medium=referral&utm_content=BaiGanio/Free-IS4&utm_campaign=Badge_Grade_Settings)
+
 - Official documentation for implementing Identity Server 4 middleware from scratch:  
   - [docs.identityserver.io](http://docs.identityserver.io/en/release/quickstarts/0_overview.html)
 - Our documentation for additional setup could be found in our project [`WIKI`](https://github.com/BaiGanio/IS4/wiki)
